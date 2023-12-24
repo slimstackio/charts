@@ -25,6 +25,6 @@ entries:
     name: slimstack
     type: application
     urls:
-    - https://github.com/slimstackio/charts/slimstack-0.2.0.tgz
+    - https://slimstackio.github.io/charts/slimstack-0.2.0.tgz
     version: 0.2.0
 generated: "2023-12-24T22:57:58.071699+02:00"
