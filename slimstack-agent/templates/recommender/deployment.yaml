@@ -46,7 +46,8 @@ spec:
               value: "{{ .Values.controller.mutator.name }}"
           resources:
             requests:
-              cpu: 1
+              cpu: {{ .Values.controller.recommender.resources.requests.cpu }}
+              memory: {{ .Values.controller.recommender.resources.requests.memory }}
             limits:
-              memory: 1Gi
+              memory: {{ .Values.controller.recommender.resources.limits.memory }}
 {{- end }}

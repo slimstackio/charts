@@ -41,7 +41,8 @@ spec:
             - containerPort: 443
           resources:
             requests:
-              cpu: 1
+              cpu: {{ .Values.controller.mutator.resources.requests.cpu }}
+              memory: {{ .Values.controller.mutator.resources.requests.memory }}
             limits:
-              memory: 1Gi
+              memory: {{ .Values.controller.mutator.resources.limits.memory }}
 {{- end }}

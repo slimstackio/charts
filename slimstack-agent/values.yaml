@@ -32,9 +32,7 @@ kubeStateMetrics:
     requests:
       cpu: 200m
     limits:
-      memory: 200Mi
-  # metricLabelsAllowlist:
-  # - pods=[slimstack.io/jvm-max-heap-size-percentage]
+      memory: 500Mi
   metricAllowlist:
     - kube_pod_.*
     - kube_.*_owner
@@ -50,7 +48,10 @@ kubeStateMetrics:
     - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
     - daemonsets=[slimstack.io/jvm-max-heap-size-percentage]
     - cronjobs=[slimstack.io/jvm-max-heap-size-percentage]
-    - pods=[slimstack.io/owner-name-override]
+    - deployments=[slimstack.io/owner-name-override]
+    - statefulsets=[slimstack.io/owner-name-override]
+    - daemonsets=[slimstack.io/owner-name-override]
+    - cronjobs=[slimstack.io/owner-name-override]
 
 nodeExporter:
   tolerations:
@@ -63,9 +64,9 @@ nodeExporter:
     targetPort: 9184
   resources:
     requests:
-      cpu: 50m
+      cpu: 100m
     limits:
-      memory: 30Mi
+      memory: 100Mi
 
 prometheus:
   enabled: true
@@ -77,11 +78,11 @@ prometheus:
       enabled: false
     resources:
       limits:
-        memory: 1500Mi
+        memory: 4Gi
         ephemeral-storage: 5Gi
       requests:
-        cpu: 100m
-        memory: 1500Mi
+        cpu: 1
+        memory: 4Gi
         ephemeral-storage: 5Gi
     defaultFlagsOverride:
       - --enable-feature=agent,expand-external-labels
@@ -116,6 +117,12 @@ controller:
     rolloutEnabled: true
     updateCooldownTimeInterval: 10m
     consolidationDeltaSeconds: 60
+    resources:
+      requests:
+        cpu: 1
+        memory: 1Gi
+      limits:
+        memory: 1Gi
   mutator:
     name: slimstack-mutator
     replicas: 2
@@ -125,5 +132,11 @@ controller:
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
+    resources:
+      requests:
+        cpu: 1
+        memory: 1Gi
+      limits:
+        memory: 1Gi
     pdb:
       enabled: true
