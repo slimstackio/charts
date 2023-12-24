@@ -1,0 +1,268 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.prometheus.server.configMapOverrideName }}
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 30s
+      external_labels:
+        customer_id: {{ include "customerID" . }}
+        cluster_id: {{ include "clusterID" . }}
+    scrape_configs:
+      {{ if .Values.cadvisor.kubelet.enabled }}
+      - job_name: 'kubernetes-cadvisor'
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        kubernetes_sd_configs:
+          - role: node
+        honor_timestamps: false
+        relabel_configs:
+          - action: labelmap
+            regex: __meta_kubernetes_node_label_(.+)
+          - target_label: __address__
+            replacement: kubernetes.default.svc:443
+          - source_labels: [__meta_kubernetes_node_name]
+            regex: (.+)
+            target_label: __metrics_path__
+            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+        metric_relabel_configs:
+        - regex: ^container_cpu_usage_seconds_total|container_memory_max_usage_bytes|container_memory_cache|container_memory_working_set_bytes|container_cpu_cfs_throttled_periods_total|container_cpu_cfs_periods_total$
+          source_labels: [ __name__ ]
+          action: keep
+        - source_labels: [ container ]
+          regex: (POD)|
+          action: drop
+        - source_labels: [ pod ]
+          regex: |
+          action: drop
+        - source_labels: [ image ]
+          regex: |
+          action: drop
+        - source_labels: [ name ]
+          regex: |
+          action: drop
+        - regex: ^(__name__|cluster_name|container|instance|name|kubernetes_io_arch|node_kubernetes_io_instance_type|pod|topology_kubernetes_io_region|topology_kubernetes_io_zone|workload_name|workload_namespace|workload_resource|namespace)$
+          action: labelkeep
+      {{- end }}
+      {{ if .Values.kubeStateMetrics.enabled }}
+      - job_name: slimstack-kube-state-metrics
+        honor_labels: true
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - {{ .Release.Namespace }}
+        relabel_configs:
+          - source_labels:
+            - job
+            target_label: __tmp_prometheus_job_name
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_instance
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_instance
+            regex: ({{ .Release.Name }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_name
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_name
+            regex: ({{ .Values.kubeStateMetrics.fullnameOverride }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_endpoint_port_name
+            regex: http
+          - source_labels:
+            - __meta_kubernetes_endpoint_address_target_kind
+            - __meta_kubernetes_endpoint_address_target_name
+            separator: ;
+            regex: Node;(.*)
+            replacement: ${1}
+            target_label: node
+          - source_labels:
+            - __meta_kubernetes_endpoint_address_target_kind
+            - __meta_kubernetes_endpoint_address_target_name
+            separator: ;
+            regex: Pod;(.*)
+            replacement: ${1}
+            target_label: pod
+          - source_labels:
+            - __meta_kubernetes_namespace
+            target_label: namespace
+          - source_labels:
+            - __meta_kubernetes_service_name
+            target_label: service
+          - source_labels:
+            - __meta_kubernetes_pod_name
+            target_label: pod
+          - source_labels:
+            - __meta_kubernetes_pod_container_name
+            target_label: container
+          - action: drop
+            source_labels:
+            - __meta_kubernetes_pod_phase
+            regex: (Failed|Succeeded)
+          - source_labels:
+            - __meta_kubernetes_service_name
+            target_label: job
+            replacement: ${1}
+          - source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_name
+            target_label: job
+            regex: (.+)
+            replacement: ${1}
+          - target_label: endpoint
+            replacement: http
+          - source_labels:
+            - __address__
+            target_label: __tmp_hash
+            modulus: 1
+            action: hashmod
+          - source_labels:
+            - __tmp_hash
+            regex: 0
+            action: keep
+        metric_relabel_configs:
+          - regex: instance
+            action: labeldrop
+          - regex: host_network
+            action: labeldrop
+          - regex: host_ip
+            action: labeldrop
+          - regex: priority_class
+            action: labeldrop
+          - regex: service
+            action: labeldrop
+          - source_labels: [pod]
+            target_label: 'original_pod'
+          - regex: pod
+            action: labeldrop
+          - source_labels: [__name__, original_pod]
+            regex: 'kube_pod.*;(.*)'
+            replacement: $1
+            target_label: 'pod'
+          - regex: original_pod
+            action: labeldrop
+          - source_labels: [container]
+            target_label: 'original_container'
+          - action: labeldrop
+            regex: 'container'
+          - source_labels: [__name__, original_container]
+            regex: 'kube_.*_container_.*;(.*)'
+            target_label: 'container'
+            replacement: '$1'
+          - action: labeldrop
+            regex: 'original_container'
+          - source_labels: [endpoint]
+            target_label: 'original_endpoint'
+          - action: labeldrop
+            regex: 'endpoint'
+          - source_labels: [__name__, original_endpoint]
+            regex: 'kube_endpoint.*;(.*)'
+            target_label: 'endpoint'
+            replacement: '$1'
+          - action: labeldrop
+            regex: 'original_endpoint'
+      {{- end }}
+      {{ if .Values.nodeExporter.enabled }}
+      - job_name: slimstack-prometheus-node-exporter
+        honor_labels: false
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - {{ .Release.Namespace }}
+            attach_metadata:
+              node: false
+        scheme: http
+        relabel_configs:
+          - source_labels:
+            - job
+            target_label: __tmp_prometheus_job_name
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_instance
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_instance
+            regex: ({{ .Release.Name }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_name
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_name
+            regex: ({{ .Values.nodeExporter.nameOverride }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_endpoint_port_name
+            regex: metrics
+          - source_labels:
+            - __meta_kubernetes_endpoint_address_target_kind
+            - __meta_kubernetes_endpoint_address_target_name
+            separator: ;
+            regex: Node;(.*)
+            replacement: ${1}
+            target_label: node
+          - source_labels:
+            - __meta_kubernetes_endpoint_address_target_kind
+            - __meta_kubernetes_endpoint_address_target_name
+            separator: ;
+            regex: Pod;(.*)
+            replacement: ${1}
+            target_label: pod
+          - source_labels:
+            - __meta_kubernetes_namespace
+            target_label: namespace
+          - source_labels:
+            - __meta_kubernetes_service_name
+            target_label: service
+          - source_labels:
+            - __meta_kubernetes_pod_name
+            target_label: pod
+          - source_labels:
+            - __meta_kubernetes_pod_container_name
+            target_label: container
+          - action: drop
+            source_labels:
+            - __meta_kubernetes_pod_phase
+            regex: (Failed|Succeeded)
+          - source_labels:
+            - __meta_kubernetes_service_name
+            target_label: job
+            replacement: ${1}
+          - source_labels:
+            - __meta_kubernetes_service_label_jobLabel
+            target_label: job
+            regex: (.+)
+            replacement: ${1}
+          - target_label: endpoint
+            replacement: http-metrics
+          - source_labels:
+            - __address__
+            target_label: __tmp_hash
+            modulus: 1
+            action: hashmod
+          - source_labels:
+            - __tmp_hash
+            regex: 0
+            action: keep
+        metric_relabel_configs: 
+          - regex: service
+            action: labeldrop
+          - regex: pod
+            action: labeldrop
+          - regex: container
+            action: labeldrop
+          - regex: endpoint
+            action: labeldrop
+          - regex: namespace
+            action: labeldrop
+      {{- end }}
+    remote_write:
+      - name: saas
+        url: {{ include "saas.endpoint" . }}/api/v1/write
+        basic_auth:
+          username: {{ include "auth.username" . }}
+          password_file: {{ include "auth.filePath" . }}
+    storage:
+      tsdb:
+        out_of_order_time_window: 0s

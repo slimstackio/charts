@@ -1,0 +1,47 @@
+{{- if .Values.controller.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.controller.mutator.name }}
+spec:
+  replicas: {{ .Values.controller.mutator.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.controller.mutator.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.controller.mutator.name }}
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - {{ .Values.controller.mutator.name }}
+                topologyKey: "kubernetes.io/hostname"
+      serviceAccountName: {{ .Values.controller.mutator.name }}
+      containers:
+        - name: {{ .Values.controller.mutator.name }}
+          image: {{ include "mutator.image" . }}
+          imagePullPolicy: {{ .Values.controller.mutator.image.pullPolicy }}
+          env:
+            - name: "DEBUG"
+              value: "{{ .Values.controller.mutator.debugLog }}"
+            - name: "CONFIG_NAMESPACE"
+              value: "{{ .Release.Namespace }}"
+            - name: "MUTATE_BY_DEFAULT"
+              value: "{{ .Values.controller.mutator.mutateByDefault }}"
+          ports:
+            - containerPort: 443
+          resources:
+            requests:
+              cpu: 1
+            limits:
+              memory: 1Gi
+{{- end }}

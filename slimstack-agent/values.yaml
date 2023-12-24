@@ -1,0 +1,129 @@
+# These values are required and are unique per cluster/customer
+# customerID: ""
+# clusterID: ""
+
+# URL override for possible private link
+# urlOverride: ""
+
+
+# If are using a differet method to insert secrets to the cluster make createSecret: false and add the following in your values:
+# prometheus:
+#   server:
+#     extraSecretMounts:
+#       - name: auth-file
+#         mountPath: /etc/config/auth
+#         secretName: <secretname>
+
+auth:
+  createSecret: true
+  # Here is the authentication token required if createSecret is true
+  # token: ""
+
+cadvisor:
+  kubelet:
+    enabled: true
+
+kubeStateMetrics:
+  enabled: true
+  fullnameOverride: slimstack-kube-state-metrics
+  nameOverride: slimstack-kube-state-metrics
+  replicas: 1
+  resources:
+    requests:
+      cpu: 200m
+    limits:
+      memory: 200Mi
+  # metricLabelsAllowlist:
+  # - pods=[slimstack.io/jvm-max-heap-size-percentage]
+  metricAllowlist:
+    - kube_pod_.*
+    - kube_.*_owner
+    - kube_deployment_status_replicas_ready
+    - kube_daemonset_status_number_ready
+    - kube_statefulset_status_replicas_ready
+    - kube_statefulset_status_replicas_ready
+    - kube_cronjob_status_active
+    - kube_node_status_.*
+    - kube_deployment_annotations
+  metricAnnotationsAllowList:
+    - deployments=[slimstack.io/jvm-max-heap-size-percentage]
+    - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
+    - daemonsets=[slimstack.io/jvm-max-heap-size-percentage]
+    - cronjobs=[slimstack.io/jvm-max-heap-size-percentage]
+    - pods=[slimstack.io/owner-name-override]
+
+nodeExporter:
+  tolerations:
+    - operator: Exists
+  enabled: true
+  fullnameOverride: slimstack-node-exporter
+  nameOverride: slimstack-node-exporter
+  service:
+    port: 9184
+    targetPort: 9184
+  resources:
+    requests:
+      cpu: 50m
+    limits:
+      memory: 30Mi
+
+prometheus:
+  enabled: true
+  server:
+    fullnameOverride: slimstack
+    replicaCount: 1
+    configMapOverrideName: prometheus-yaml
+    persistentVolume:
+      enabled: false
+    resources:
+      limits:
+        memory: 1500Mi
+        ephemeral-storage: 5Gi
+      requests:
+        cpu: 100m
+        memory: 1500Mi
+        ephemeral-storage: 5Gi
+    defaultFlagsOverride:
+      - --enable-feature=agent,expand-external-labels
+      - --storage.agent.retention.max-time=30m
+      - --config.file=/etc/config/prometheus.yml 
+      - --web.console.libraries=/etc/prometheus/console_libraries
+      - --web.console.templates=/etc/prometheus/console
+      - --web.enable-lifecycle
+    extraSecretMounts:
+      - name: auth-file
+        mountPath: /etc/config/auth
+        secretName: auth-file
+  alertmanager:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+
+controller:
+  enabled: true
+  recommender:
+    name: slimstack-recommender
+    replicas: 1
+    image:
+      repository: slimstack/recommender
+      tag: 0.1.0
+      pullPolicy: Always
+    debugLog: false
+    rolloutEnabled: true
+    updateCooldownTimeInterval: 10m
+    consolidationDeltaSeconds: 60
+  mutator:
+    name: slimstack-mutator
+    replicas: 2
+    image:
+      repository: slimstack/mutator
+      tag: 0.1.0
+      pullPolicy: Always
+    debugLog: false
+    mutateByDefault: true
+    pdb:
+      enabled: true

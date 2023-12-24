@@ -1,0 +1,52 @@
+{{- if .Values.controller.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.controller.recommender.name }}
+spec:
+  replicas: {{ .Values.controller.recommender.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.controller.recommender.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.controller.recommender.name }}
+    spec:
+      imagePullSecrets: 
+        - name: regcred
+      serviceAccountName: {{ .Values.controller.recommender.name }}
+      containers:
+        - name: recommender
+          image: {{ include "recommender.image" . }}
+          imagePullPolicy: {{ .Values.controller.recommender.image.pullPolicy }}
+          env:
+            - name: "DEBUG"
+              value: "{{ .Values.controller.recommender.debugLog }}"
+            - name: "CONFIG_NAMESPACE"
+              value: "{{ .Release.Namespace }}"
+            - name: "CONTROLLER_ROLLOUT_ENABLED"
+              value: "{{ .Values.controller.recommender.rolloutEnabled }}"
+            - name: "UPDATE_COOLDOWN_TIME_INTERVAL"
+              value: "{{ .Values.controller.recommender.updateCooldownTimeInterval }}"
+            - name: "CONSOLIDATION_DELTA_SECONDS"
+              value: "{{ .Values.controller.recommender.consolidationDeltaSeconds }}"
+            - name: "PROMETHEUS_SERVER_ADDRESS"
+              value: "{{ include "saas.endpoint" .}}"
+            - name: "AUTH_USERNAME"
+              value: "{{ include "auth.username" . }}"
+            - name: "AUTH_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: {{ include "auth.secretName" . }}
+            - name: "CLUSTER_ID"
+              value: "{{ include "clusterID" . }}"
+            - name: "MUTATOR_ENDPOINT"
+              value: "{{ .Values.controller.mutator.name }}"
+          resources:
+            requests:
+              cpu: 1
+            limits:
+              memory: 1Gi
+{{- end }}

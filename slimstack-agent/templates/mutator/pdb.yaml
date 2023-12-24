@@ -1,0 +1,13 @@
+{{- if and .Values.controller.enabled .Values.controller.mutator.pdb.enabled }}
+{{- if ge (int .Values.controller.mutator.replicas) 2 }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ .Values.controller.mutator.name }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.controller.mutator.name }}
+{{- end }}
+{{- end }}
