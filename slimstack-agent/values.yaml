@@ -35,11 +35,11 @@ kubeStateMetrics:
       memory: 500Mi
   metricAllowlist:
     - kube_pod_.*
-    - kube_deployment_.*
-    - kube_daemonset_.*
-    - kube_statefulset_.*
-    - kube_job_.*
-    - kube_cronjob_.*
+    - kube_deployment_labels
+    - kube_daemonset_labels
+    - kube_statefulset_labels
+    - kube_job_labels
+    - kube_cronjob_labels
     - kube_.*_owner
     - kube_deployment_status_replicas_ready
     - kube_daemonset_status_number_ready
