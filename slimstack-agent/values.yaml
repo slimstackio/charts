@@ -53,6 +53,7 @@ kubeStateMetrics:
     - statefulsets=[slimstack.io/owner-name-override]
     - daemonsets=[slimstack.io/owner-name-override]
     - cronjobs=[slimstack.io/owner-name-override]
+    - jobs=[slimstack.io/owner-name-override]
 
 nodeExporter:
   tolerations:
