@@ -48,6 +48,7 @@ kubeStateMetrics:
     - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
     - daemonsets=[slimstack.io/jvm-max-heap-size-percentage]
     - cronjobs=[slimstack.io/jvm-max-heap-size-percentage]
+  metricLabelsAllowList:
     - pods=[slimstack.io/owner-name-override]
     - deployments=[slimstack.io/owner-name-override]
     - statefulsets=[slimstack.io/owner-name-override]
