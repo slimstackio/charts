@@ -47,6 +47,11 @@ kubeStateMetrics:
     - kube_statefulset_status_replicas_ready
     - kube_cronjob_status_active
     - kube_node_status_.*
+    - kube_deployment_annotations
+    - kube_daemonset_annotations
+    - kube_statefulset_annotations
+    - kube_job_annotations
+    - kube_cronjob_annotations
   metricAnnotationsAllowList:
     - deployments=[slimstack.io/jvm-max-heap-size-percentage]
     - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
