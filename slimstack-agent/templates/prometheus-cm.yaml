@@ -168,6 +168,7 @@ data:
       {{- end }}
       {{ if .Values.nodeExporter.enabled }}
       - job_name: slimstack-prometheus-node-exporter
+        metrics_path: {{ .Values.nodeExporter.metricsPath }}
         honor_labels: false
         kubernetes_sd_configs:
           - role: endpoints

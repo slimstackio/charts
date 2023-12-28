@@ -76,11 +76,16 @@ nodeExporter:
   service:
     port: 9184
     targetPort: 9184
+  annotations:
+    prometheus.io/scrape: "false"
   resources:
     requests:
       cpu: 100m
     limits:
       memory: 100Mi
+  extraArgs:
+    - --web.telemetry-path=/slimstack-metrics
+  metricsPath: /slimstack-metrics
 
 prometheus:
   enabled: true
