@@ -76,8 +76,8 @@ nodeExporter:
   service:
     port: 9184
     targetPort: 9184
-  annotations:
-    prometheus.io/scrape: "false"
+    annotations:
+      prometheus.io/scrape: "false"
   resources:
     requests:
       cpu: 100m

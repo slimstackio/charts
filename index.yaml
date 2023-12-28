@@ -3,7 +3,7 @@ entries:
   slimstack:
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2023-12-28T14:41:57.273982+02:00"
+    created: "2023-12-28T14:47:18.110274+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -21,7 +21,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 4.23.*
     description: SlimStack installation chart
-    digest: 892448a241446921f9e8389c7a6ec55a572cc22b51d73b292ae16dbed002c292
+    digest: 514c6e452b352e2f7fac92002458cba0f99407a9a716255c49bcab71d23361ee
     name: slimstack
     type: application
     urls:
@@ -29,7 +29,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2023-12-28T14:41:57.266797+02:00"
+    created: "2023-12-28T14:47:18.102542+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -53,4 +53,4 @@ entries:
     urls:
     - https://slimstackio.github.io/charts/slimstack-0.2.0.tgz
     version: 0.2.0
-generated: "2023-12-28T14:41:57.257525+02:00"
+generated: "2023-12-28T14:47:18.091695+02:00"
