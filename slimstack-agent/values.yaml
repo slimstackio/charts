@@ -25,6 +25,7 @@ cadvisor:
 
 kubeStateMetrics:
   enabled: true
+  prometheusScrape: false
   fullnameOverride: slimstack-kube-state-metrics
   nameOverride: slimstack-kube-state-metrics
   replicas: 1
