@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: "0.3.0"
+appVersion: "0.3.1"
 description: SlimStack installation chart
 name: slimstack
 type: application
-version: 0.3.0
+version: 0.3.1
 dependencies:
 - alias: prometheus
   condition: prometheus.enabled
