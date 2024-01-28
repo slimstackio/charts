@@ -3,15 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.controller.mutator.name }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.controller.mutator.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.controller.mutator.name }}
+      app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.controller.mutator.name }}
+        app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       affinity:
         podAntiAffinity:

@@ -3,15 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.controller.recommender.name }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.controller.recommender.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.controller.recommender.name }}
+      app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.controller.recommender.name }}
+        app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       imagePullSecrets: 
         - name: regcred

@@ -258,6 +258,34 @@ data:
           - regex: namespace
             action: labeldrop
       {{- end }}
+      {{ if .Values.controller.enabled }}
+      - job_name: slimstack-controllers
+        honor_labels: false
+        scheme: http
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - {{ .Release.Namespace }}
+        relabel_configs:
+          - source_labels:
+            - job
+            target_label: __tmp_prometheus_job_name
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_instance
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_instance
+            regex: ({{ .Release.Name }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_service_label_app_kubernetes_io_name
+            - __meta_kubernetes_service_labelpresent_app_kubernetes_io_name
+            regex: ({{ .Values.controller.recommender.name }}|{{ .Values.controller.mutator.name }});true
+          - action: keep
+            source_labels:
+            - __meta_kubernetes_endpoint_port_name
+            regex: metrics
+      {{- end }}
     remote_write:
       - name: saas
         url: {{ include "saas.endpoint" . }}/api/v1/write

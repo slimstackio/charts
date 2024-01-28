@@ -5,19 +5,37 @@ metadata:
   name: {{ .Values.controller.mutator.name }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
   name: {{ .Values.controller.mutator.name }}
 rules:
   - apiGroups: [""]
     resources: ["configmaps"]
     verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.controller.mutator.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.controller.mutator.name }}
+roleRef:
+  kind: Role
+  name: {{ .Values.controller.mutator.name }}
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Values.controller.mutator.name }}
+rules:
   - apiGroups: ["apps"]
-    resources: ["replicasets"]
-    verbs: ["get", "list"]
+    resources: ["deployments", "statefulsets", "daemonsets"]
+    verbs: ["get", "list", "watch", "patch"]
   - apiGroups: ["batch"]
-    resources: ["jobs"]
-    verbs: ["get", "list"]
+    resources: ["cronjobs"]
+    verbs: ["get", "list", "watch", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

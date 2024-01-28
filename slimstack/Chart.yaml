@@ -1,15 +1,15 @@
 apiVersion: v2
-appVersion: "0.3.1"
+appVersion: "0.3.2"
 description: SlimStack installation chart
 name: slimstack
 type: application
-version: 0.3.1
+version: 0.3.2
 dependencies:
 - alias: prometheus
   condition: prometheus.enabled
   name: prometheus
   repository: https://prometheus-community.github.io/helm-charts
-  version: 25.1.0
+  version: 25.10.0
 - alias: kubeStateMetrics
   condition: kubeStateMetrics.enabled
   name: kube-state-metrics
