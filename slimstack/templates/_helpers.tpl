@@ -23,7 +23,7 @@
 {{- end }}
 
 {{- define "auth.username" -}}
-{{ .Values.customerID }}-{{ .Values.clusterID }}
+{{ .Values.customerID }}
 {{- end }}
 
 {{- define "saas.endpoint" -}}

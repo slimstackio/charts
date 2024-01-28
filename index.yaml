@@ -2,8 +2,34 @@ apiVersion: v1
 entries:
   slimstack:
   - apiVersion: v2
+    appVersion: 0.3.2
+    created: "2024-01-28T23:50:51.323981+02:00"
+    dependencies:
+    - alias: prometheus
+      condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 25.10.0
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.12.*
+    - alias: nodeExporter
+      condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.23.*
+    description: SlimStack installation chart
+    digest: 12048c36097f51cf5eb212e4d57b001e19e17b3fc7561275a0df4df513a0551b
+    name: slimstack
+    type: application
+    urls:
+    - https://slimstackio.github.io/charts/slimstack-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
     appVersion: 0.3.1
-    created: "2024-01-08T14:59:17.207741+02:00"
+    created: "2024-01-28T23:50:51.317323+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -29,7 +55,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2024-01-08T14:59:17.199217+02:00"
+    created: "2024-01-28T23:50:51.30977+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -55,7 +81,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2024-01-08T14:59:17.191391+02:00"
+    created: "2024-01-28T23:50:51.302777+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -81,7 +107,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.2.2
-    created: "2024-01-08T14:59:17.183873+02:00"
+    created: "2024-01-28T23:50:51.295834+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -107,7 +133,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2024-01-08T14:59:17.163092+02:00"
+    created: "2024-01-28T23:50:51.28775+02:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -131,30 +157,4 @@ entries:
     urls:
     - https://slimstackio.github.io/charts/slimstack-0.2.1.tgz
     version: 0.2.1
-  - apiVersion: v2
-    appVersion: 0.2.0
-    created: "2024-01-08T14:59:17.136964+02:00"
-    dependencies:
-    - alias: prometheus
-      condition: prometheus.enabled
-      name: prometheus
-      repository: https://prometheus-community.github.io/helm-charts
-      version: 25.1.0
-    - alias: kubeStateMetrics
-      condition: kubeStateMetrics.enabled
-      name: kube-state-metrics
-      repository: https://prometheus-community.github.io/helm-charts
-      version: 5.12.*
-    - alias: nodeExporter
-      condition: nodeExporter.enabled
-      name: prometheus-node-exporter
-      repository: https://prometheus-community.github.io/helm-charts
-      version: 4.23.*
-    description: SlimStack installation chart
-    digest: 96b380741768905cc47babba1a0302c2a42f6f81e8075a0b02e6f68165b10a02
-    name: slimstack
-    type: application
-    urls:
-    - https://slimstackio.github.io/charts/slimstack-0.2.0.tgz
-    version: 0.2.0
-generated: "2024-01-08T14:59:17.128359+02:00"
+generated: "2024-01-28T23:50:51.278143+02:00"

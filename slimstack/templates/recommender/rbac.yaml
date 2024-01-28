@@ -5,12 +5,33 @@ metadata:
   name: {{ .Values.controller.recommender.name }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ .Values.controller.recommender.name }}
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch", "create", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.controller.recommender.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.controller.recommender.name }}
+roleRef:
+  kind: Role
+  name: {{ .Values.controller.recommender.name }}
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ .Values.controller.recommender.name }}
 rules:
   - apiGroups: [""]
-    resources: ["pods", "configmaps", "events"]
+    resources: ["pods", "events"]
     verbs: ["get", "list", "watch", "create", "update", "delete"]
   - apiGroups: ["apps"]
     resources: ["replicasets", "deployments", "statefulsets", "daemonsets"]
