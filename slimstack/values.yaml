@@ -131,7 +131,7 @@ controller:
     replicas: 1
     image:
       repository: slimstack/recommender
-      tag: 0.3.2
+      tag: 0.3.3
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
@@ -148,7 +148,7 @@ controller:
     replicas: 2
     image:
       repository: slimstack/mutator
-      tag: 0.3.2
+      tag: 0.3.3
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
