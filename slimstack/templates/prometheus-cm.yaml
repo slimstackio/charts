@@ -11,6 +11,17 @@ data:
         customer_id: {{ include "customerID" . }}
         cluster_id: {{ include "clusterID" . }}
     scrape_configs:
+      - job_name: 'karpenter'
+        kubernetes_sd_configs:
+          - role: service
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            regex: karpenter
+            action: keep
+          - source_labels: [__meta_kubernetes_service_port_number]
+            regex: '8000'
+            action: keep
+        metrics_path: '/metrics'
       {{ if .Values.cadvisor.kubelet.enabled }}
       - job_name: 'kubernetes-cadvisor'
         scheme: https

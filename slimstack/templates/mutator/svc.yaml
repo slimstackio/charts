@@ -12,7 +12,7 @@ spec:
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
     - name: https
-      port: 443
+      port: 8443
       targetPort: 443
     - name: metrics
       port: 8080
