@@ -47,12 +47,16 @@ kubeStateMetrics:
     - kube_statefulset_status_replicas_ready
     - kube_statefulset_status_replicas_ready
     - kube_cronjob_status_active
-    - kube_node_status_.*
+    - kube_node_.*
     - kube_deployment_annotations
     - kube_daemonset_annotations
     - kube_statefulset_annotations
     - kube_job_annotations
     - kube_cronjob_annotations
+    - kube_horizontalpodautoscaler_.*
+    - kube_poddisruptionbudget_.*
+    - kube_resource.*
+    - kube_limit.*
   metricAnnotationsAllowList:
     - deployments=[slimstack.io/jvm-max-heap-size-percentage]
     - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
@@ -67,6 +71,8 @@ kubeStateMetrics:
     - daemonsets=[slimstack.io/owner-name-override]
     - cronjobs=[slimstack.io/owner-name-override]
     - jobs=[slimstack.io/owner-name-override]
+  extraArgs:
+    - --metric-opt-in-list=kube_pod_nodeselectors
 
 nodeExporter:
   tolerations:
