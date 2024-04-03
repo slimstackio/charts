@@ -41,9 +41,6 @@ data:
             target_label: __metrics_path__
             replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
         metric_relabel_configs:
-        - regex: ^container_cpu_usage_seconds_total|container_memory_max_usage_bytes|container_memory_cache|container_memory_working_set_bytes|container_cpu_cfs_throttled_periods_total|container_cpu_cfs_periods_total$
-          source_labels: [ __name__ ]
-          action: keep
         - source_labels: [ container ]
           regex: (POD)|
           action: drop
