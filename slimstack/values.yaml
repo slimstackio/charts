@@ -136,8 +136,8 @@ controller:
     name: slimstack-recommender
     replicas: 1
     image:
-      repository: slimstack/recommender
-      tag: 0.3.5
+      repository: public.ecr.aws/slimstack/recommender
+      tag: 0.3.6
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
@@ -153,8 +153,8 @@ controller:
     name: slimstack-mutator
     replicas: 2
     image:
-      repository: slimstack/mutator
-      tag: 0.3.5
+      repository: public.ecr.aws/slimstack/mutator
+      tag: 0.3.6
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
