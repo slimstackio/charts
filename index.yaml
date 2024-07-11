@@ -2,8 +2,34 @@ apiVersion: v1
 entries:
   slimstack:
   - apiVersion: v2
+    appVersion: 0.3.7
+    created: "2024-07-11T15:11:31.198955+03:00"
+    dependencies:
+    - alias: prometheus
+      condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 25.10.0
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.12.*
+    - alias: nodeExporter
+      condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.23.*
+    description: SlimStack installation chart
+    digest: 960a51feed88979789941f561809f5cf71366c871a7026149f40192c320daad0
+    name: slimstack
+    type: application
+    urls:
+    - https://slimstackio.github.io/charts/slimstack-0.3.8.tgz
+    version: 0.3.8
+  - apiVersion: v2
     appVersion: 0.3.6
-    created: "2024-06-10T13:29:30.472699+03:00"
+    created: "2024-07-11T15:11:31.194117+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -29,7 +55,7 @@ entries:
     version: 0.3.7
   - apiVersion: v2
     appVersion: 0.3.5
-    created: "2024-06-10T13:29:30.465105+03:00"
+    created: "2024-07-11T15:11:31.189244+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -55,7 +81,7 @@ entries:
     version: 0.3.6
   - apiVersion: v2
     appVersion: 0.3.5
-    created: "2024-06-10T13:29:30.45862+03:00"
+    created: "2024-07-11T15:11:31.184045+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -81,7 +107,7 @@ entries:
     version: 0.3.5
   - apiVersion: v2
     appVersion: 0.3.3
-    created: "2024-06-10T13:29:30.451914+03:00"
+    created: "2024-07-11T15:11:31.179281+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -107,7 +133,7 @@ entries:
     version: 0.3.4
   - apiVersion: v2
     appVersion: 0.3.3
-    created: "2024-06-10T13:29:30.445382+03:00"
+    created: "2024-07-11T15:11:31.173774+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -133,7 +159,7 @@ entries:
     version: 0.3.3
   - apiVersion: v2
     appVersion: 0.3.2
-    created: "2024-06-10T13:29:30.438237+03:00"
+    created: "2024-07-11T15:11:31.168893+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -159,7 +185,7 @@ entries:
     version: 0.3.2
   - apiVersion: v2
     appVersion: 0.3.1
-    created: "2024-06-10T13:29:30.429637+03:00"
+    created: "2024-07-11T15:11:31.16372+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -185,7 +211,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2024-06-10T13:29:30.422169+03:00"
+    created: "2024-07-11T15:11:31.158496+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -211,7 +237,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2024-06-10T13:29:30.415705+03:00"
+    created: "2024-07-11T15:11:31.153302+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -237,7 +263,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.2.2
-    created: "2024-06-10T13:29:30.408756+03:00"
+    created: "2024-07-11T15:11:31.148025+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -263,7 +289,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2024-06-10T13:29:30.401988+03:00"
+    created: "2024-07-11T15:11:31.14296+03:00"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -287,4 +313,4 @@ entries:
     urls:
     - https://slimstackio.github.io/charts/slimstack-0.2.1.tgz
     version: 0.2.1
-generated: "2024-06-10T13:29:30.393183+03:00"
+generated: "2024-07-11T15:11:31.137438+03:00"
