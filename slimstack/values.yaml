@@ -154,7 +154,7 @@ controller:
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.7
+      tag: 0.3.8
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
