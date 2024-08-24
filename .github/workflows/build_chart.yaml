@@ -19,15 +19,13 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          fetch-depth: 0
 
       - name: Build & Index Helm Chart
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
+          git checkout gh-pages
           git checkout main -- slimstack
           helm dep up slimstack
           helm package slimstack
