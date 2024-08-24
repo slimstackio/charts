@@ -30,9 +30,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git fetch --all
+          git checkout gh-pages
           git add .
           git commit -m "Update Helm chart index" || echo "No changes to commit"
-          git fetch --all
-          git branch gh-pages || echo "gh-pages already exists"
-          git pull --rebase
-          git push origin gh-pages
+          git push
