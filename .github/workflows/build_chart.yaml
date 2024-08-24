@@ -14,24 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
       - name: Set up Helm
         uses: azure/setup-helm@v4.2.0
 
-      - name: Build & Index Helm Chart
-        run: |
-          helm dep up slimstack
-          helm package slimstack
-          helm repo index --url https://slimstackio.github.io/charts/ .
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
 
-      - name: Commit and Push Changes
+      - name: Build & Index Helm Chart
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
-          git checkout gh-pages
+          git checkout main -- slimstack
+          helm dep up slimstack
+          helm package slimstack
+          helm repo index --url https://slimstackio.github.io/charts/ .
           git add .
           git commit -m "Update Helm chart index" || echo "No changes to commit"
           git push
