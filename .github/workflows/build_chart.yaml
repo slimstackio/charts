@@ -20,12 +20,14 @@ jobs:
         run: |
           helm dep up slimstack
           helm package slimstack
-          helm repo index slimstack
+          helm repo index --url https://slimstackio.github.io/charts/ .
 
       - name: Commit and Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Update Helm chart index"
+          git commit -m "Update Helm chart index" || echo "No changes to commit"
+          git fetch --all
+          git branch gh-pages || echo "gh-pages already exists"
           git push origin gh-pages
