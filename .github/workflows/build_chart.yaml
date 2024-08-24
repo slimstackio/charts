@@ -34,4 +34,5 @@ jobs:
           git commit -m "Update Helm chart index" || echo "No changes to commit"
           git fetch --all
           git branch gh-pages || echo "gh-pages already exists"
+          git pull
           git push origin gh-pages
