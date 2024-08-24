@@ -1,5 +1,9 @@
 name: Build and Index Helm Chart
 
+permissions:
+  contents: write
+  actions: write
+
 on:
   push:
     branches:
