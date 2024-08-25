@@ -3,11 +3,11 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ .Values.controller.mutator.name }}
+  name: {{ template "mutator.fullname" . }}
 spec:
   minAvailable: 1
   selector:
     matchLabels:
-      app: {{ .Values.controller.mutator.name }}
+      app: {{ template "mutator.fullname" . }}
 {{- end }}
 {{- end }}

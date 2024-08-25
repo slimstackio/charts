@@ -2,12 +2,12 @@
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: {{ .Values.controller.mutator.name }}
+  name: {{ template "mutator.fullname" . }}
 webhooks:
   - name: mutator.slimstack.io
     clientConfig:
       service:
-        name: {{ .Values.controller.mutator.name }}
+        name: {{ template "mutator.fullname" . }}
         namespace: {{ .Release.Namespace }}
         path: "/mutate"
         port: 8443

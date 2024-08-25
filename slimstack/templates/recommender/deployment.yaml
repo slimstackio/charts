@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.controller.recommender.name }}
+  name: {{ template "recommender.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+    app.kubernetes.io/name: {{ template "recommender.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.controller.recommender.replicas }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+      app.kubernetes.io/name: {{ template "recommender.fullname" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.controller.recommender.name }}
+        app.kubernetes.io/name: {{ template "recommender.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       imagePullSecrets: 
         - name: regcred
-      serviceAccountName: {{ .Values.controller.recommender.name }}
+      serviceAccountName: {{ template "recommender.fullname" . }}
       containers:
         - name: recommender
           image: {{ include "recommender.image" . }}
@@ -48,7 +48,7 @@ spec:
             - name: "CLUSTER_ID"
               value: "{{ include "clusterID" . }}"
             - name: "MUTATOR_ENDPOINT"
-              value: "{{ .Values.controller.mutator.name }}"
+              value: "{{ template "mutator.fullname" . }}"
           resources:
             requests:
               cpu: {{ .Values.controller.recommender.resources.requests.cpu }}
