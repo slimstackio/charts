@@ -133,7 +133,7 @@ prometheus:
 controller:
   enabled: true
   recommender:
-    name: slimstack-recommender
+    name: recommender
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
@@ -150,7 +150,7 @@ controller:
       limits:
         memory: 700Mi
   mutator:
-    name: slimstack-mutator
+    name: mutator
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator

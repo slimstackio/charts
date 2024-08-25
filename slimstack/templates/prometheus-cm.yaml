@@ -288,7 +288,7 @@ data:
             source_labels:
             - __meta_kubernetes_service_label_app_kubernetes_io_name
             - __meta_kubernetes_service_labelpresent_app_kubernetes_io_name
-            regex: ({{ .Values.controller.recommender.name }}|{{ .Values.controller.mutator.name }});true
+            regex: ({{ template "recommender.fullname" . }}|{{ template "mutator.fullname" . }});true
           - action: keep
             source_labels:
             - __meta_kubernetes_endpoint_port_name

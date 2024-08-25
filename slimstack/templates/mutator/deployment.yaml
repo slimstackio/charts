@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.controller.mutator.name }}
+  name: {{ template "mutator.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+    app.kubernetes.io/name: {{ template "mutator.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.controller.mutator.replicas }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+      app.kubernetes.io/name: {{ template "mutator.fullname" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.controller.mutator.name }}
+        app.kubernetes.io/name: {{ template "mutator.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       affinity:
@@ -28,11 +28,11 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - {{ .Values.controller.mutator.name }}
+                        - {{ template "mutator.fullname" . }}
                 topologyKey: "kubernetes.io/hostname"
-      serviceAccountName: {{ .Values.controller.mutator.name }}
+      serviceAccountName: {{ template "mutator.fullname" . }}
       containers:
-        - name: {{ .Values.controller.mutator.name }}
+        - name: {{ template "mutator.fullname" . }}
           image: {{ include "mutator.image" . }}
           imagePullPolicy: {{ .Values.controller.mutator.image.pullPolicy }}
           env:
