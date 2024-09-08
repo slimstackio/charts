@@ -65,7 +65,7 @@ kubeStateMetrics:
     - pods=[slimstack.io/jvm-max-heap-size-percentage]
     - jobs=[slimstack.io/jvm-max-heap-size-percentage]
   metricLabelsAllowlist:
-    - pods=[slimstack.io/owner-name-override]
+    - pods=[slimstack.io/owner-name-override,slimstack.io/mutated]
     - deployments=[slimstack.io/owner-name-override]
     - statefulsets=[slimstack.io/owner-name-override]
     - daemonsets=[slimstack.io/owner-name-override]
@@ -137,7 +137,7 @@ controller:
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.7
+      tag: 0.3.14
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
@@ -154,7 +154,7 @@ controller:
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.10
+      tag: 0.3.14
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
