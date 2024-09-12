@@ -1,0 +1,17 @@
+{{- if .Values.controller.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "recommender.fullname" . }}-metrics
+  labels:
+    app.kubernetes.io/name: {{ template "recommender.fullname" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    app.kubernetes.io/name: {{ template "recommender.fullname" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - name: metrics
+      port: 8080
+      targetPort: 8080
+{{- end }}

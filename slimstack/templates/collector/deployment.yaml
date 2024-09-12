@@ -1,0 +1,46 @@
+{{- if .Values.controller.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "collector.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ template "collector.fullname" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.controller.collector.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "collector.fullname" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ template "collector.fullname" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      imagePullSecrets: 
+        - name: regcred
+      serviceAccountName: {{ template "collector.fullname" . }}
+      containers:
+        - name: collector
+          image: {{ include "collector.image" . }}
+          imagePullPolicy: {{ .Values.controller.collector.image.pullPolicy }}
+          env:
+            - name: "DEBUG"
+              value: "{{ .Values.controller.collector.debugLog }}"
+            - name: "AUTH_USERNAME"
+              value: "{{ include "auth.username" . }}"
+            - name: "AUTH_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: {{ include "auth.secretName" . }}
+            - name: "CLUSTER_ID"
+              value: "{{ include "clusterID" . }}"
+          resources:
+            requests:
+              cpu: {{ .Values.controller.collector.resources.requests.cpu }}
+              memory: {{ .Values.controller.collector.resources.requests.memory }}
+            limits:
+              memory: {{ .Values.controller.collector.resources.limits.memory }}
+{{- end }}
