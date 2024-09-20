@@ -53,7 +53,7 @@ data:
         - source_labels: [ name ]
           regex: |
           action: drop
-        - regex: ^(__name__|cluster_name|container|instance|name|kubernetes_io_arch|node_kubernetes_io_instance_type|pod|topology_kubernetes_io_region|topology_kubernetes_io_zone|workload_name|workload_namespace|workload_resource|namespace)$
+        - regex: ^(__name__|cluster_name|container|instance|name|kubernetes_io_arch|node_kubernetes_io_instance_type|pod|topology_kubernetes_io_region|topology_kubernetes_io_zone|workload_name|workload_namespace|workload_resource|namespace|id)$
           action: labelkeep
       {{- end }}
       {{ if .Values.kubeStateMetrics.enabled }}
