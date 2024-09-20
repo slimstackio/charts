@@ -49,6 +49,10 @@ spec:
               value: "{{ include "clusterID" . }}"
             - name: "MUTATOR_ENDPOINT"
               value: "{{ template "mutator.fullname" . }}"
+            {{- range $key, $value := .Values.controller.recommender.extraEnvVars }}
+            - name: "{{ $key }}"
+              value: "{{ $value }}"
+            {{- end }}
           resources:
             requests:
               cpu: {{ .Values.controller.recommender.resources.requests.cpu }}

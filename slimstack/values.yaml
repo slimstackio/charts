@@ -113,7 +113,7 @@ prometheus:
     defaultFlagsOverride:
       - --enable-feature=agent,expand-external-labels
       - --storage.agent.retention.max-time=30m
-      - --config.file=/etc/config/prometheus.yml 
+      - --config.file=/etc/config/prometheus.yml
       - --web.console.libraries=/etc/prometheus/console_libraries
       - --web.console.templates=/etc/prometheus/console
       - --web.enable-lifecycle
@@ -149,6 +149,7 @@ controller:
         memory: 500Mi
       limits:
         memory: 700Mi
+    extraEnvVars: {}
   mutator:
     name: mutator
     replicas: 2
@@ -166,3 +167,4 @@ controller:
         memory: 500Mi
     pdb:
       enabled: true
+    extraEnvVars: {}
