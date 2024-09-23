@@ -137,7 +137,7 @@ controller:
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.14
+      tag: 0.3.15
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
