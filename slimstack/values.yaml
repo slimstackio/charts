@@ -58,12 +58,12 @@ kubeStateMetrics:
     - kube_resource.*
     - kube_limit.*
   metricAnnotationsAllowList:
-    - deployments=[slimstack.io/jvm-max-heap-size-percentage]
-    - statefulsets=[slimstack.io/jvm-max-heap-size-percentage]
-    - daemonsets=[slimstack.io/jvm-max-heap-size-percentage]
-    - cronjobs=[slimstack.io/jvm-max-heap-size-percentage]
-    - pods=[slimstack.io/jvm-max-heap-size-percentage]
-    - jobs=[slimstack.io/jvm-max-heap-size-percentage]
+    - deployments=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
+    - statefulsets=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
+    - daemonsets=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
+    - cronjobs=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
+    - pods=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
+    - jobs=[slimstack.io/jvm-max-heap-size-percentage,slimstack.io/mutate-enabled]
   metricLabelsAllowlist:
     - pods=[slimstack.io/owner-name-override,slimstack.io/mutated]
     - deployments=[slimstack.io/owner-name-override]
@@ -137,7 +137,7 @@ controller:
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.15
+      tag: 0.3.16
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
