@@ -168,3 +168,19 @@ controller:
     pdb:
       enabled: true
     extraEnvVars: {}
+
+collector:
+  enabled: false
+  name: collector
+  replicas: 1
+  image:
+    repository: public.ecr.aws/slimstack/collector
+    tag: 0.0.1
+    pullPolicy: Always
+  debugLog: false
+  resources:
+    requests:
+      cpu: 300m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
