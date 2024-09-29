@@ -39,10 +39,18 @@
 {{ .Values.controller.mutator.image.repository }}:{{ .Values.controller.mutator.image.tag }}
 {{- end }}
 
+{{- define "collector.image" -}}
+{{ .Values.collector.image.repository }}:{{ .Values.collector.image.tag }}
+{{- end }}
+
 {{- define "mutator.fullname" -}}
 {{- printf "%s-%s" (include "slimstack.fullname" .) .Values.controller.mutator.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
 {{- define "recommender.fullname" -}}
 {{- printf "%s-%s" (include "slimstack.fullname" .) .Values.controller.recommender.name | trunc 63 | trimSuffix "-" -}}
+{{- end }}
+
+{{- define "collector.fullname" -}}
+{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.collector.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
