@@ -170,12 +170,12 @@ controller:
     extraEnvVars: {}
 
 collector:
-  enabled: false
+  enabled: true
   name: collector
-  replicas: 1
+  replicas: 2
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.0.1
+    tag: 0.1.0
     pullPolicy: Always
   debugLog: false
   resources:
