@@ -73,6 +73,22 @@ kubeStateMetrics:
     - jobs=[slimstack.io/owner-name-override]
   extraArgs:
     - --metric-opt-in-list=kube_pod_nodeselectors
+  collectors:
+  - cronjobs
+  - daemonsets
+  - deployments
+  - horizontalpodautoscalers
+  - jobs
+  - limitranges
+  - nodes
+  - persistentvolumeclaims
+  - persistentvolumes
+  - poddisruptionbudgets
+  - pods
+  - replicasets
+  - replicationcontrollers
+  - resourcequotas
+  - statefulsets
 
 nodeExporter:
   tolerations:
@@ -96,19 +112,29 @@ nodeExporter:
 
 prometheus:
   enabled: true
+  configmapReload:
+    prometheus:
+      resources:
+        limits:
+          memory: 50Mi
+        requests:
+          cpu: 10m
+          memory: 30Mi
   server:
     fullnameOverride: slimstack
     replicaCount: 1
+    strategy:
+      type: RollingUpdate
     configMapOverrideName: prometheus-yaml
     persistentVolume:
       enabled: false
     resources:
       limits:
-        memory: 4Gi
+        memory: 6Gi
         ephemeral-storage: 5Gi
       requests:
         cpu: 1
-        memory: 4Gi
+        memory: 6Gi
         ephemeral-storage: 5Gi
     defaultFlagsOverride:
       - --enable-feature=agent,expand-external-labels
