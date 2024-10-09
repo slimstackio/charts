@@ -112,6 +112,11 @@ nodeExporter:
 
 prometheus:
   enabled: true
+  rbac:
+    create: false
+  serviceAccounts:
+    server:
+      name: slimstack-prom-sa
   configmapReload:
     prometheus:
       resources:
@@ -122,6 +127,7 @@ prometheus:
           memory: 30Mi
   server:
     fullnameOverride: slimstack
+    clusterRoleName: slimstack-prom
     replicaCount: 1
     strategy:
       type: RollingUpdate
