@@ -53,10 +53,8 @@ spec:
             - name: "{{ $key }}"
               value: "{{ $value }}"
             {{- end }}
+          {{- if .Values.controller.recommender.resources }}
           resources:
-            requests:
-              cpu: {{ .Values.controller.recommender.resources.requests.cpu }}
-              memory: {{ .Values.controller.recommender.resources.requests.memory }}
-            limits:
-              memory: {{ .Values.controller.recommender.resources.limits.memory }}
+          {{- .Values.controller.recommender.resources | toYaml | nindent 12 }}
+          {{- end }}
 {{- end }}
