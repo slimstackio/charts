@@ -48,10 +48,18 @@ spec:
             {{- end }}
           ports:
             - containerPort: 443
+          {{- if .Values.controller.mutator.resources }}
           resources:
-            requests:
-              cpu: {{ .Values.controller.mutator.resources.requests.cpu }}
-              memory: {{ .Values.controller.mutator.resources.requests.memory }}
-            limits:
-              memory: {{ .Values.controller.mutator.resources.limits.memory }}
+          {{- .Values.controller.mutator.resources | toYaml | nindent 12 }}
+          {{- end }}
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 443
+              scheme: HTTPS
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
 {{- end }}

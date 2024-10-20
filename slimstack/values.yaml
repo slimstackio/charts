@@ -169,7 +169,7 @@ controller:
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.16
+      tag: 0.3.17
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
@@ -179,15 +179,17 @@ controller:
       requests:
         cpu: 1
         memory: 500Mi
+        ephemeral-storage: 100Mi
       limits:
         memory: 700Mi
+        ephemeral-storage: 200Mi
     extraEnvVars: {}
   mutator:
     name: mutator
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.14
+      tag: 0.3.15
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
@@ -195,8 +197,10 @@ controller:
       requests:
         cpu: 1
         memory: 500Mi
+        ephemeral-storage: 100Mi
       limits:
         memory: 500Mi
+        ephemeral-storage: 200Mi
     pdb:
       enabled: true
     extraEnvVars: {}
@@ -207,12 +211,14 @@ collector:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.1.0
+    tag: 0.2.1
     pullPolicy: Always
   debugLog: false
   resources:
     requests:
       cpu: 300m
       memory: 256Mi
+      ephemeral-storage: 100Mi
     limits:
       memory: 512Mi
+      ephemeral-storage: 200Mi

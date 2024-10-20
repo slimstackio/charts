@@ -43,11 +43,9 @@ spec:
               value: "{{ include "saas.endpoint" .}}"
             - name: DEBUG
               value: "{{ .Values.collector.debugLog }}"
+          {{- if .Values.collector.resources }}
           resources:
-            limits:
-              memory: {{ .Values.collector.resources.limits.memory }}
-            requests:
-              cpu: {{ .Values.collector.resources.requests.cpu }}
-              memory: {{ .Values.collector.resources.requests.memory }}
+          {{- .Values.collector.resources | toYaml | nindent 12 }}
+          {{- end }}
           imagePullPolicy: {{ .Values.collector.image.pullPolicy }}
 {{- end }}
