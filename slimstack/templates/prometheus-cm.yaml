@@ -1,3 +1,4 @@
+{{- if .Values.prometheus.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -331,3 +332,4 @@ data:
     storage:
       tsdb:
         out_of_order_time_window: 0s
+{{- end }}
