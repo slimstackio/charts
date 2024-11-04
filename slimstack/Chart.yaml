@@ -3,7 +3,7 @@ appVersion: "0.3.17"
 description: SlimStack installation chart
 name: slimstack
 type: application
-version: 0.3.26
+version: 0.3.27
 dependencies:
 - alias: prometheus
   condition: prometheus.enabled

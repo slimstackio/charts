@@ -189,7 +189,7 @@ controller:
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.15
+      tag: 0.3.16
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
@@ -211,7 +211,7 @@ collector:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.1
+    tag: 0.2.3
     pullPolicy: Always
   debugLog: false
   resources:
