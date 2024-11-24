@@ -53,6 +53,15 @@ rules:
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ template "collector.fullname" . }}
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch", "create", "update", "delete"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: {{ template "collector.fullname" . }}
@@ -62,6 +71,19 @@ subjects:
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
+  name: {{ template "collector.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ template "collector.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "collector.fullname" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
   name: {{ template "collector.fullname" . }}
   apiGroup: rbac.authorization.k8s.io
 {{- end }}
