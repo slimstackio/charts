@@ -169,7 +169,7 @@ controller:
     replicas: 1
     image:
       repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.17
+      tag: 0.3.22
       pullPolicy: Always
     debugLog: false
     rolloutEnabled: true
@@ -189,7 +189,7 @@ controller:
     replicas: 2
     image:
       repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.16
+      tag: 0.3.21
       pullPolicy: Always
     debugLog: false
     mutateByDefault: true
@@ -211,7 +211,7 @@ collector:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.3
+    tag: 0.2.6
     pullPolicy: Always
   debugLog: false
   resources:

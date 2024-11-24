@@ -45,6 +45,8 @@ spec:
                 secretKeyRef:
                   key: token
                   name: {{ include "auth.secretName" . }}
+            - name: "CUSTOMER_ID"
+              value: "{{ include "customerID" . }}"
             - name: "CLUSTER_ID"
               value: "{{ include "clusterID" . }}"
             - name: "MUTATOR_ENDPOINT"

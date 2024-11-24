@@ -42,6 +42,10 @@ spec:
               value: "{{ .Release.Namespace }}"
             - name: "MUTATE_BY_DEFAULT"
               value: "{{ .Values.controller.mutator.mutateByDefault }}"
+            - name: "CUSTOMER_ID"
+              value: "{{ include "customerID" . }}"
+            - name: "CLUSTER_ID"
+              value: "{{ include "clusterID" . }}"
             {{- range $key, $value := .Values.controller.mutator.extraEnvVars }}
             - name: "{{ $key }}"
               value: "{{ $value }}"
