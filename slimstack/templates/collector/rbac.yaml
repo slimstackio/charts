@@ -10,7 +10,7 @@ metadata:
   name: {{ template "collector.fullname" . }}
 rules:
   - apiGroups: [""]
-    resources: ["services", "nodes", "resourcequotas", "persistentvolumes", "persistentvolumeclaims", "namespaces"]
+    resources: ["services", "nodes", "resourcequotas", "persistentvolumes", "persistentvolumeclaims", "namespaces", "events"]
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["pods"]
