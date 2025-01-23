@@ -208,10 +208,10 @@ controller:
 collector:
   enabled: true
   name: collector
-  replicas: 2
+  replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.6
+    tag: 0.2.23
     pullPolicy: Always
   debugLog: false
   resources:
@@ -222,3 +222,4 @@ collector:
     limits:
       memory: 512Mi
       ephemeral-storage: 200Mi
+  collectOnly: 'true'
