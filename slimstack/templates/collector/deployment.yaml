@@ -40,9 +40,18 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.name
             - name: MAIN_API_URL
-              value: "{{ include "saas.endpoint" .}}"
+              value: "{{ include "api.url" .}}"
             - name: DEBUG
               value: "{{ .Values.collector.debugLog }}"
+            - name: MUTATOR_URL
+              value: slimstack-mutator
+            - name: CONFIG_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: COLLECT_ONLY_MODE
+              value: {{ .Values.collector.collectOnly }}
           {{- if .Values.collector.resources }}
           resources:
           {{- .Values.collector.resources | toYaml | nindent 12 }}

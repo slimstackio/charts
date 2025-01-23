@@ -54,3 +54,11 @@
 {{- define "collector.fullname" -}}
 {{- printf "%s-%s" (include "slimstack.fullname" .) .Values.collector.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
+
+{{- define "api.url" -}}
+{{- if .Values.collector.apiUrlOverride -}}
+  {{ .Values.collector.apiUrlOverride }}
+{{- else -}}
+  {{ include "saas.endpoint" .}}
+{{- end }}
+{{- end }}
