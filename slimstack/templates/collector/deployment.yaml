@@ -51,7 +51,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.namespace
             - name: COLLECT_ONLY_MODE
-              value: {{ .Values.collector.collectOnly }}
+              value: '{{ .Values.collector.collectOnly }}'
           {{- if .Values.collector.resources }}
           resources:
           {{- .Values.collector.resources | toYaml | nindent 12 }}
