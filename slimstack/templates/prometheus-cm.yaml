@@ -267,7 +267,7 @@ data:
           - regex: namespace
             action: labeldrop
       {{- end }}
-      {{ if .Values.controller.enabled }}
+      {{ if .Values.mutator.enabled }}
       - job_name: slimstack-controllers
         honor_labels: false
         scheme: http

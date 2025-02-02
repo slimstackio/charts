@@ -162,48 +162,27 @@ prometheus:
   kube-state-metrics:
     enabled: false
 
-controller:
+mutator:
   enabled: true
-  recommender:
-    name: recommender
-    replicas: 1
-    image:
-      repository: public.ecr.aws/slimstack/recommender
-      tag: 0.3.22
-      pullPolicy: Always
-    debugLog: false
-    rolloutEnabled: true
-    updateCooldownTimeInterval: 10m
-    consolidationDeltaSeconds: 60
-    resources:
-      requests:
-        cpu: 1
-        memory: 500Mi
-        ephemeral-storage: 100Mi
-      limits:
-        memory: 700Mi
-        ephemeral-storage: 200Mi
-    extraEnvVars: {}
-  mutator:
-    name: mutator
-    replicas: 2
-    image:
-      repository: public.ecr.aws/slimstack/mutator
-      tag: 0.3.21
-      pullPolicy: Always
-    debugLog: false
-    mutateByDefault: true
-    resources:
-      requests:
-        cpu: 1
-        memory: 500Mi
-        ephemeral-storage: 100Mi
-      limits:
-        memory: 500Mi
-        ephemeral-storage: 200Mi
-    pdb:
-      enabled: true
-    extraEnvVars: {}
+  name: mutator
+  replicas: 2
+  image:
+    repository: public.ecr.aws/slimstack/mutator
+    tag: 0.4.18
+    pullPolicy: Always
+  debugLog: false
+  mutateByDefault: true
+  resources:
+    requests:
+      cpu: 1
+      memory: 500Mi
+      ephemeral-storage: 100Mi
+    limits:
+      memory: 500Mi
+      ephemeral-storage: 200Mi
+  pdb:
+    enabled: true
+  extraEnvVars: {}
 
 collector:
   enabled: true
@@ -211,15 +190,15 @@ collector:
   replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.23
+    tag: 0.2.30
     pullPolicy: Always
   debugLog: false
   resources:
     requests:
       cpu: 300m
-      memory: 256Mi
+      memory: 1Gi
       ephemeral-storage: 100Mi
     limits:
-      memory: 512Mi
+      memory: 1Gi
       ephemeral-storage: 200Mi
-  collectOnly: 'true'
+  collectOnly: 'false'

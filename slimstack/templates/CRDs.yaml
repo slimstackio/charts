@@ -1,0 +1,132 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: clusterworkloads.wand.cloud
+spec:
+  group: wand.cloud
+  scope: Cluster
+  names:
+    plural: clusterworkloads
+    singular: clusterworkload
+    kind: ClusterWorkload
+    shortNames:
+      - cwl
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          required:
+            - spec
+          properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
+              properties:
+                name:
+                  type: string
+                generateName:
+                  type: string
+            spec:
+              type: object
+              required:
+                - type
+                - controlled
+                - cpuLimitBuffer
+                - memoryLimitBuffer
+              properties:
+                controlled:
+                  type: boolean
+                  default: false
+                  description: "Indicates whether the workload is controlled by Wand."
+                autoRollout:
+                  type: boolean
+                  description: "Enables automatic rollout for this workload."
+                baselineResources:
+                  type: object
+                  description: "Defines baseline resources per container."
+                  properties:
+                    containers:
+                      type: array
+                      description: "List of containers with baseline resource settings."
+                      items:
+                        type: object
+                        required:
+                          - name
+                          - resources
+                        properties:
+                          name:
+                            type: string
+                            description: "Container name."
+                          resources:
+                            type: object
+                            description: "Baseline resource requests and limits."
+                            properties:
+                              requests:
+                                type: object
+                                properties:
+                                  cpu:
+                                    type: string
+                                    pattern: '^([0-9]+m|[0-9]*\\.[0-9]+)$'
+                                    description: "CPU request for this container."
+                                  memory:
+                                    type: string
+                                    pattern: '^([0-9]+(Ki|Mi|Gi|Ti|Pi|Ei))$'
+                                    description: "Memory request for this container."
+                              limits:
+                                type: object
+                                properties:
+                                  cpu:
+                                    type: string
+                                    pattern: '^([0-9]+m|[0-9]*\\.[0-9]+)$'
+                                    description: "CPU limit for this container."
+                                  memory:
+                                    type: string
+                                    pattern: '^([0-9]+(Ki|Mi|Gi|Ti|Pi|Ei))$'
+                                    description: "Memory limit for this container."
+                hardMaxCPU:
+                  type: string
+                  pattern: '^([0-9]+m|[0-9]*\\.[0-9]+)$'
+                  default: "20000m"
+                  description: "Hard maximum CPU for containers."
+                hardMaxMemory:
+                  type: string
+                  pattern: '^([0-9]+(Ki|Mi|Gi|Ti|Pi|Ei))$'
+                  default: "50Gi"
+                  description: "Hard maximum memory for containers."
+                setCPULimits:
+                  type: boolean
+                  default: false
+                  description: "Determines whether CPU limits are set for this workload."
+                cpuLimitBuffer:
+                  type: number
+                  minimum: 0
+                  default: 25
+                  description: "CPU limit buffer as a percentage (0-100)."
+                memoryLimitBuffer:
+                  type: number
+                  minimum: 0
+                  default: 25
+                  description: "Memory limit buffer as a percentage (0-100)."
+                wandNodesPlacement:
+                  type: boolean
+                  description: "Ensures pods for this workload are placed on Wand's dedicated nodes."
+                type:
+                  type: string
+                  enum:
+                    - GroupOfPods
+                    - GroupOfJobs
+                    - GroupOfDeployments
+                    - GroupOfStatefulSets
+                    - GroupOfDaemonSets
+                    - GroupOfCronJobs
+                    - GroupOfRollouts
+                  description: "Specifies the type of workload."
+                description:
+                  type: string
+                  description: "A brief description of the cluster workload."
