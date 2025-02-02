@@ -1,5 +1,5 @@
-{{- if and .Values.mutator.enabled .Values.controller.mutator.pdb.enabled }}
-{{- if ge (int .Values.controller.mutator.replicas) 2 }}
+{{- if and .Values.mutator.enabled .Values.mutator.pdb.enabled }}
+{{- if ge (int .Values.mutator.replicas) 2 }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:

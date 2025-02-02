@@ -21,8 +21,8 @@ webhooks:
     sideEffects: None
     timeoutSeconds: 5
     admissionReviewVersions: ["v1", "v1beta1"]
-    {{- if .Values.controller.mutator.namespaceSelector }}
+    {{- if .Values.mutator.namespaceSelector }}
     namespaceSelector:
-      {{- .Values.controller.mutator.namespaceSelector | toYaml | nindent 6 }}
+      {{- .Values.mutator.namespaceSelector | toYaml | nindent 6 }}
     {{- end }}
 {{- end }}

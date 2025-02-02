@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: {{ template "mutator.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.controller.mutator.replicas }}
+  replicas: {{ .Values.mutator.replicas }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ template "mutator.fullname" . }}
@@ -34,27 +34,27 @@ spec:
       containers:
         - name: {{ template "mutator.fullname" . }}
           image: {{ include "mutator.image" . }}
-          imagePullPolicy: {{ .Values.controller.mutator.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.mutator.image.pullPolicy }}
           env:
             - name: "DEBUG"
-              value: "{{ .Values.controller.mutator.debugLog }}"
+              value: "{{ .Values.mutator.debugLog }}"
             - name: "CONFIG_NAMESPACE"
               value: "{{ .Release.Namespace }}"
             - name: "MUTATE_BY_DEFAULT"
-              value: "{{ .Values.controller.mutator.mutateByDefault }}"
+              value: "{{ .Values.mutator.mutateByDefault }}"
             - name: "CUSTOMER_ID"
               value: "{{ include "customerID" . }}"
             - name: "CLUSTER_ID"
               value: "{{ include "clusterID" . }}"
-            {{- range $key, $value := .Values.controller.mutator.extraEnvVars }}
+            {{- range $key, $value := .Values.mutator.extraEnvVars }}
             - name: "{{ $key }}"
               value: "{{ $value }}"
             {{- end }}
           ports:
             - containerPort: 443
-          {{- if .Values.controller.mutator.resources }}
+          {{- if .Values.mutator.resources }}
           resources:
-          {{- .Values.controller.mutator.resources | toYaml | nindent 12 }}
+          {{- .Values.mutator.resources | toYaml | nindent 12 }}
           {{- end }}
           readinessProbe:
             httpGet:
