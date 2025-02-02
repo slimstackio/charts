@@ -1,4 +1,4 @@
-{{- if .Values.controller.enabled }}
+{{- if .Values.mutator.enabled }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
