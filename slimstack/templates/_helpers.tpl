@@ -31,12 +31,8 @@
 {{ default $url .Values.urlOverride}}
 {{- end }}
 
-{{- define "recommender.image" -}}
-{{ .Values.controller.recommender.image.repository }}:{{ .Values.controller.recommender.image.tag }}
-{{- end }}
-
 {{- define "mutator.image" -}}
-{{ .Values.controller.mutator.image.repository }}:{{ .Values.controller.mutator.image.tag }}
+{{ .Values.mutator.image.repository }}:{{ .Values.mutator.image.tag }}
 {{- end }}
 
 {{- define "collector.image" -}}
@@ -44,11 +40,11 @@
 {{- end }}
 
 {{- define "mutator.fullname" -}}
-{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.controller.mutator.name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.mutator.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
 {{- define "recommender.fullname" -}}
-{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.controller.recommender.name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.recommender.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
 {{- define "collector.fullname" -}}
