@@ -6,7 +6,9 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ template "collector.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    {{ if .Values.collector.wandControl -}}
     wand.cloud/workload-is-controlled: "true"
+    {{- end }}
 spec:
   replicas: {{ .Values.collector.replicas }}
   selector:
