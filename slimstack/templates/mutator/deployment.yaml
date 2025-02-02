@@ -21,6 +21,14 @@ spec:
         app.kubernetes.io/name: {{ template "mutator.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      {{ if .Values.mutator.nodeSelector -}}
+      nodeSelector:
+        {{- toYaml .Values.mutator.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{ if .Values.mutator.tolerations -}}
+        tolerations:
+        {{- toYaml .Values.mutator.tolerations | nindent 8 }}
+      {{- end }}
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
