@@ -170,6 +170,7 @@ mutator:
     repository: public.ecr.aws/slimstack/mutator
     tag: 0.4.18
     pullPolicy: Always
+  wandControl: true
   debugLog: false
   mutateByDefault: true
   resources:
@@ -192,6 +193,7 @@ collector:
     repository: public.ecr.aws/slimstack/collector
     tag: 0.2.30
     pullPolicy: Always
+  wandControl: true
   debugLog: false
   resources:
     requests:
