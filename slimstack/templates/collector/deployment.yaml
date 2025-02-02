@@ -21,6 +21,14 @@ spec:
         app.kubernetes.io/name: {{ template "collector.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      {{ if .Values.collector.nodeSelector -}}
+      nodeSelector:
+        {{- toYaml .Values.collector.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{ if .Values.collector.tolerations -}}
+        tolerations:
+        {{- toYaml .Values.collector.tolerations | nindent 8 }}
+      {{- end }}
       serviceAccountName: {{ template "collector.fullname" . }}
       containers:
         - name: collector
