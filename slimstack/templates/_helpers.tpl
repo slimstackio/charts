@@ -43,10 +43,6 @@
 {{- printf "%s-%s" (include "slimstack.fullname" .) .Values.mutator.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
-{{- define "recommender.fullname" -}}
-{{- printf "%s-%s" (include "slimstack.fullname" .) .Values.recommender.name | trunc 63 | trimSuffix "-" -}}
-{{- end }}
-
 {{- define "collector.fullname" -}}
 {{- printf "%s-%s" (include "slimstack.fullname" .) .Values.collector.name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
