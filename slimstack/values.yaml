@@ -29,6 +29,8 @@ kubeStateMetrics:
   fullnameOverride: slimstack-kube-state-metrics
   nameOverride: slimstack-kube-state-metrics
   replicas: 1
+  customLabels:
+    wand.cloud/workload-is-controlled: "true"
   resources:
     requests:
       cpu: 200m
@@ -91,9 +93,11 @@ kubeStateMetrics:
   - statefulsets
 
 nodeExporter:
+  enabled: true
   tolerations:
     - operator: Exists
-  enabled: true
+  podLabels:
+    wand.cloud/workload-is-controlled: "true"
   fullnameOverride: slimstack-node-exporter
   nameOverride: slimstack-node-exporter
   service:
@@ -112,6 +116,8 @@ nodeExporter:
 
 prometheus:
   enabled: true
+  commonMetaLabels:
+    wand.cloud/workload-is-controlled: "true"
   rbac:
     create: false
   serviceAccounts:
