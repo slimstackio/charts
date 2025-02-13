@@ -33,7 +33,7 @@ kubeStateMetrics:
     requests:
       cpu: 200m
     limits:
-      memory: 500Mi
+      memory: 1Gi
   metricAllowlist:
     - kube_pod_.*
     - kube_deployment_labels
@@ -168,7 +168,7 @@ mutator:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/mutator
-    tag: 0.4.18
+    tag: 0.4.19
     pullPolicy: Always
   wandControl: true
   debugLog: false
@@ -191,7 +191,7 @@ collector:
   replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.30
+    tag: 0.2.33
     pullPolicy: Always
   wandControl: true
   debugLog: false
@@ -199,8 +199,8 @@ collector:
     requests:
       cpu: 300m
       memory: 1Gi
-      ephemeral-storage: 100Mi
+      ephemeral-storage: 300Mi
     limits:
       memory: 1Gi
-      ephemeral-storage: 200Mi
+      ephemeral-storage: 400Mi
   collectOnly: 'false'
