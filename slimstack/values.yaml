@@ -13,6 +13,7 @@
 #       - name: auth-file
 #         mountPath: /etc/config/auth
 #         secretName: <secretname>
+fullnameOverride: slimstack
 
 auth:
   createSecret: true
@@ -204,9 +205,9 @@ collector:
   resources:
     requests:
       cpu: 300m
-      memory: 1Gi
-      ephemeral-storage: 300Mi
+      memory: 2Gi
+      ephemeral-storage: 400Mi
     limits:
-      memory: 1Gi
+      memory: 2Gi
       ephemeral-storage: 400Mi
   collectOnly: 'false'

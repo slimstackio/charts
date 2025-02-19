@@ -55,7 +55,7 @@ spec:
             - name: DEBUG
               value: "{{ .Values.collector.debugLog }}"
             - name: MUTATOR_URL
-              value: slimstack-mutator
+              value: {{ template "mutator.fullname" . }}
             - name: CONFIG_NAMESPACE
               valueFrom:
                 fieldRef:
