@@ -268,7 +268,7 @@ data:
             action: labeldrop
       {{- end }}
       {{ if .Values.mutator.enabled }}
-      - job_name: slimstack-controllers
+      - job_name: mutator
         honor_labels: false
         scheme: http
         kubernetes_sd_configs:
@@ -296,7 +296,7 @@ data:
             regex: metrics
       {{- end }}
       {{ if .Values.collector.enabled }}
-      - job_name: slimstack-collector
+      - job_name: collector
         honor_labels: false
         scheme: http
         kubernetes_sd_configs:
