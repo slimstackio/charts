@@ -55,7 +55,7 @@ rules:
     resources: ["clusterworkloads"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
   - apiGroups: ["apiextensions.k8s.io"]
-    resources: ["customresourcedefinition"]
+    resources: ["customresourcedefinitions"]
     resourceNames: ["clusterworkloads.wand.cloud"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
