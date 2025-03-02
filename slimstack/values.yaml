@@ -31,7 +31,7 @@ kubeStateMetrics:
   nameOverride: slimstack-kube-state-metrics
   replicas: 1
   customLabels:
-    wand.cloud/workload-is-controlled: "true"
+    wand.cloud/workload-is-controlled: "false"
   resources:
     requests:
       cpu: 200m
@@ -98,7 +98,7 @@ nodeExporter:
   tolerations:
     - operator: Exists
   podLabels:
-    wand.cloud/workload-is-controlled: "true"
+    wand.cloud/workload-is-controlled: "false"
   fullnameOverride: slimstack-node-exporter
   nameOverride: slimstack-node-exporter
   service:
@@ -118,7 +118,7 @@ nodeExporter:
 prometheus:
   enabled: true
   commonMetaLabels:
-    wand.cloud/workload-is-controlled: "true"
+    wand.cloud/workload-is-controlled: "false"
   rbac:
     create: false
   serviceAccounts:
@@ -175,9 +175,9 @@ mutator:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/mutator
-    tag: 0.4.20
+    tag: 0.4.23
     pullPolicy: Always
-  wandControl: true
+  wandControl: false
   debugLog: false
   mutateByDefault: true
   resources:
@@ -198,9 +198,9 @@ collector:
   replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.40
+    tag: 0.2.43
     pullPolicy: Always
-  wandControl: true
+  wandControl: false
   debugLog: false
   resources:
     requests:

@@ -37,8 +37,6 @@ spec:
               required:
                 - type
                 - controlled
-                - cpuLimitBuffer
-                - memoryLimitBuffer
               properties:
                 controlled:
                   type: boolean
