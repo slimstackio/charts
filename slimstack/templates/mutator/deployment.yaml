@@ -6,9 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ template "mutator.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    {{ if .Values.mutator.wandControl -}}
-    wand.cloud/workload-is-controlled: "true"
-    {{- end }}
 spec:
   replicas: {{ .Values.mutator.replicas }}
   selector:
@@ -31,16 +28,14 @@ spec:
       {{- end }}
       affinity:
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - {{ template "mutator.fullname" . }}
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - {{ template "mutator.fullname" . }}
+              topologyKey: "kubernetes.io/hostname"
       serviceAccountName: {{ template "mutator.fullname" . }}
       containers:
         - name: {{ template "mutator.fullname" . }}
