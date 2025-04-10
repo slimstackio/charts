@@ -18,11 +18,11 @@ spec:
         app.kubernetes.io/name: {{ template "mutator.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      {{ if .Values.mutator.nodeSelector -}}
+      {{- if .Values.mutator.nodeSelector }}
       nodeSelector:
         {{- toYaml .Values.mutator.nodeSelector | nindent 8 }}
       {{- end }}
-      {{ if .Values.mutator.tolerations -}}
+      {{- if .Values.mutator.tolerations }}
         tolerations:
         {{- toYaml .Values.mutator.tolerations | nindent 8 }}
       {{- end }}
@@ -39,7 +39,7 @@ spec:
       serviceAccountName: {{ template "mutator.fullname" . }}
       containers:
         - name: {{ template "mutator.fullname" . }}
-          image: {{ include "mutator.image" . }}
+          image: {{ template "mutator.image" . }}
           imagePullPolicy: {{ .Values.mutator.image.pullPolicy }}
           env:
             - name: "DEBUG"
@@ -49,9 +49,9 @@ spec:
             - name: "MUTATE_BY_DEFAULT"
               value: "{{ .Values.mutator.mutateByDefault }}"
             - name: "CUSTOMER_ID"
-              value: "{{ include "customerID" . }}"
+              value: "{{ template "customerID" . }}"
             - name: "CLUSTER_ID"
-              value: "{{ include "clusterID" . }}"
+              value: "{{ template "clusterID" . }}"
             {{- range $key, $value := .Values.mutator.extraEnvVars }}
             - name: "{{ $key }}"
               value: "{{ $value }}"

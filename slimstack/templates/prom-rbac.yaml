@@ -45,6 +45,13 @@ rules:
       - "/metrics"
     verbs:
       - get
+  - apiGroups:
+      - "metrics.eks.amazonaws.com"
+    resources:
+      - ksh/metrics
+      - kcm/metrics
+    verbs:
+      - get
 ---
 apiVersion: {{ template "rbac.apiVersion" . }}
 kind: ClusterRoleBinding

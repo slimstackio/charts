@@ -9,7 +9,7 @@ Add Slimstack repo:
 helm repo add slimstack https://slimstackio.github.io/charts/
 ```
 
-Install the chart in read-only mode:
+Install the chart:
 ```
 export CUSTOMER_ID=<Customer ID provided by SlimStack>
 export CLUSTER_ID=<Cluster ID>
@@ -18,7 +18,6 @@ export TOKEN=<Authentication token provided by SlimStack>
 helm upgrade -i slimstack slimstack/slimstack -n slimstack --create-namespace \
 --set customerID=$CUSTOMER_ID \
 --set clusterID=$CLUSTER_ID \
---set controller.enabled=false \
 --set auth.token=$TOKEN
 ```
 
@@ -47,6 +46,5 @@ export CLUSTER_ID=<Cluster ID>
 helm upgrade -i slimstack slimstack/slimstack -n slimstack --create-namespace \
 --set customerID=$CUSTOMER_ID \
 --set clusterID=$CLUSTER_ID \
---set controller.enabled=false \
 -f <custom values file>
 ```
