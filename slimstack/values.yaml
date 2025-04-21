@@ -143,14 +143,14 @@ prometheus:
       enabled: false
     resources:
       limits:
-        memory: 6Gi
+        memory: 8Gi
         ephemeral-storage: 5Gi
       requests:
         cpu: 1
-        memory: 6Gi
+        memory: 8Gi
         ephemeral-storage: 5Gi
     defaultFlagsOverride:
-      - --enable-feature=agent,expand-external-labels
+      - --agent
       - --storage.agent.retention.max-time=30m
       - --config.file=/etc/config/prometheus.yml
       - --web.console.libraries=/etc/prometheus/console_libraries

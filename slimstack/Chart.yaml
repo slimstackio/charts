@@ -3,13 +3,13 @@ appVersion: "0.4.26"
 description: SlimStack installation chart
 name: slimstack
 type: application
-version: 0.3.43
+version: 0.4.1
 dependencies:
 - alias: prometheus
   condition: prometheus.enabled
   name: prometheus
   repository: https://prometheus-community.github.io/helm-charts
-  version: 25.10.0
+  version: 27.11.0
 - alias: kubeStateMetrics
   condition: kubeStateMetrics.enabled
   name: kube-state-metrics
@@ -19,4 +19,4 @@ dependencies:
   condition: nodeExporter.enabled
   name: prometheus-node-exporter
   repository: https://prometheus-community.github.io/helm-charts
-  version: 4.23.*
+  version: 4.45.*
