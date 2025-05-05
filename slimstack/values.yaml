@@ -175,7 +175,7 @@ mutator:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/mutator
-    tag: 0.4.26
+    tag: 0.4.29
     pullPolicy: Always
   wandControl: false
   debugLog: false
