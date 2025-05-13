@@ -192,7 +192,7 @@ collector:
   replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.48
+    tag: 0.2.50
     pullPolicy: Always
   wandControl: false
   debugLog: false
