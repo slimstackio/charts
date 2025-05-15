@@ -3,7 +3,7 @@ entries:
   slimstack:
   - apiVersion: v2
     appVersion: 0.4.30
-    created: "2025-05-13T12:39:54.190868875Z"
+    created: "2025-05-15T08:44:16.267845288Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -21,7 +21,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 4.45.*
     description: SlimStack installation chart
-    digest: 630b0886048514056f326638c9d81276a7281505ecd7bf360c8fbbc566f9abf3
+    digest: b302cba88420ad44469fd751fb5f45fe4488f6ad718d81a4d97b8ec2b1f67fa0
     name: slimstack
     type: application
     urls:
@@ -29,7 +29,7 @@ entries:
     version: 0.4.5
   - apiVersion: v2
     appVersion: 0.4.30
-    created: "2025-05-13T12:39:54.180595823Z"
+    created: "2025-05-15T08:44:16.257349214Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -55,7 +55,7 @@ entries:
     version: 0.4.4
   - apiVersion: v2
     appVersion: 0.4.30
-    created: "2025-05-13T12:39:54.170241368Z"
+    created: "2025-05-15T08:44:16.246681957Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -81,7 +81,7 @@ entries:
     version: 0.4.3
   - apiVersion: v2
     appVersion: 0.4.29
-    created: "2025-05-13T12:39:54.158328489Z"
+    created: "2025-05-15T08:44:16.23643404Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -107,7 +107,7 @@ entries:
     version: 0.4.2
   - apiVersion: v2
     appVersion: 0.4.26
-    created: "2025-05-13T12:39:54.144261241Z"
+    created: "2025-05-15T08:44:16.226187718Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -133,7 +133,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 0.4.26
-    created: "2025-05-13T12:39:54.076416393Z"
+    created: "2025-05-15T08:44:16.168134535Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -159,7 +159,7 @@ entries:
     version: 0.3.43
   - apiVersion: v2
     appVersion: 0.4.24
-    created: "2025-05-13T12:39:54.066923838Z"
+    created: "2025-05-15T08:44:16.157844442Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -185,7 +185,7 @@ entries:
     version: 0.3.41
   - apiVersion: v2
     appVersion: 0.4.24
-    created: "2025-05-13T12:39:54.056114046Z"
+    created: "2025-05-15T08:44:16.148857218Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -211,7 +211,7 @@ entries:
     version: 0.3.40
   - apiVersion: v2
     appVersion: 0.4.23
-    created: "2025-05-13T12:39:54.028593809Z"
+    created: "2025-05-15T08:44:16.130472882Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -237,7 +237,7 @@ entries:
     version: 0.3.39
   - apiVersion: v2
     appVersion: 0.4.20
-    created: "2025-05-13T12:39:54.019293328Z"
+    created: "2025-05-15T08:44:16.12145728Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -263,7 +263,7 @@ entries:
     version: 0.3.38
   - apiVersion: v2
     appVersion: 0.4.20
-    created: "2025-05-13T12:39:54.004508067Z"
+    created: "2025-05-15T08:44:16.112435235Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -289,7 +289,7 @@ entries:
     version: 0.3.37
   - apiVersion: v2
     appVersion: 0.4.19
-    created: "2025-05-13T12:39:53.996184328Z"
+    created: "2025-05-15T08:44:16.103519562Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -315,7 +315,7 @@ entries:
     version: 0.3.36
   - apiVersion: v2
     appVersion: 0.4.19
-    created: "2025-05-13T12:39:53.986632429Z"
+    created: "2025-05-15T08:44:16.09458248Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -341,7 +341,7 @@ entries:
     version: 0.3.35
   - apiVersion: v2
     appVersion: 0.4.18
-    created: "2025-05-13T12:39:53.977033883Z"
+    created: "2025-05-15T08:44:16.08557648Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -367,7 +367,7 @@ entries:
     version: 0.3.34
   - apiVersion: v2
     appVersion: 0.4.18
-    created: "2025-05-13T12:39:53.96425072Z"
+    created: "2025-05-15T08:44:16.076361183Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -393,7 +393,7 @@ entries:
     version: 0.3.33
   - apiVersion: v2
     appVersion: 0.3.21
-    created: "2025-05-13T12:39:53.952767235Z"
+    created: "2025-05-15T08:44:16.067024078Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -419,7 +419,7 @@ entries:
     version: 0.3.32
   - apiVersion: v2
     appVersion: 0.3.21
-    created: "2025-05-13T12:39:53.939747968Z"
+    created: "2025-05-15T08:44:16.058499281Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -445,7 +445,7 @@ entries:
     version: 0.3.31
   - apiVersion: v2
     appVersion: 0.3.21
-    created: "2025-05-13T12:39:53.930308865Z"
+    created: "2025-05-15T08:44:16.049083362Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -471,7 +471,7 @@ entries:
     version: 0.3.30
   - apiVersion: v2
     appVersion: 0.3.17
-    created: "2025-05-13T12:39:53.904997718Z"
+    created: "2025-05-15T08:44:16.029689694Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -497,7 +497,7 @@ entries:
     version: 0.3.29
   - apiVersion: v2
     appVersion: 0.3.17
-    created: "2025-05-13T12:39:53.89673168Z"
+    created: "2025-05-15T08:44:16.020761882Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -523,7 +523,7 @@ entries:
     version: 0.3.28
   - apiVersion: v2
     appVersion: 0.3.17
-    created: "2025-05-13T12:39:53.883849659Z"
+    created: "2025-05-15T08:44:16.011838055Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -549,7 +549,7 @@ entries:
     version: 0.3.27
   - apiVersion: v2
     appVersion: 0.3.17
-    created: "2025-05-13T12:39:53.870258618Z"
+    created: "2025-05-15T08:44:16.002743089Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -575,7 +575,7 @@ entries:
     version: 0.3.26
   - apiVersion: v2
     appVersion: 0.3.17
-    created: "2025-05-13T12:39:53.858125679Z"
+    created: "2025-05-15T08:44:15.993597759Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -601,7 +601,7 @@ entries:
     version: 0.3.25
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.84878596Z"
+    created: "2025-05-15T08:44:15.98454577Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -627,7 +627,7 @@ entries:
     version: 0.3.24
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.83893806Z"
+    created: "2025-05-15T08:44:15.976263756Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -653,7 +653,7 @@ entries:
     version: 0.3.23
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.824923421Z"
+    created: "2025-05-15T08:44:15.966926695Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -679,7 +679,7 @@ entries:
     version: 0.3.22
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.816700416Z"
+    created: "2025-05-15T08:44:15.957237792Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -705,7 +705,7 @@ entries:
     version: 0.3.21
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.803858947Z"
+    created: "2025-05-15T08:44:15.948142204Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -731,7 +731,7 @@ entries:
     version: 0.3.20
   - apiVersion: v2
     appVersion: 0.3.16
-    created: "2025-05-13T12:39:53.781205875Z"
+    created: "2025-05-15T08:44:15.929319254Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -757,7 +757,7 @@ entries:
     version: 0.3.19
   - apiVersion: v2
     appVersion: 0.3.15
-    created: "2025-05-13T12:39:53.768083965Z"
+    created: "2025-05-15T08:44:15.920243812Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -783,7 +783,7 @@ entries:
     version: 0.3.18
   - apiVersion: v2
     appVersion: 0.3.14
-    created: "2025-05-13T12:39:53.75924398Z"
+    created: "2025-05-15T08:44:15.91139601Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -809,7 +809,7 @@ entries:
     version: 0.3.17
   - apiVersion: v2
     appVersion: 0.3.14
-    created: "2025-05-13T12:39:53.74707924Z"
+    created: "2025-05-15T08:44:15.902495679Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -835,7 +835,7 @@ entries:
     version: 0.3.16
   - apiVersion: v2
     appVersion: 0.3.14
-    created: "2025-05-13T12:39:53.736126171Z"
+    created: "2025-05-15T08:44:15.894238016Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -861,7 +861,7 @@ entries:
     version: 0.3.15
   - apiVersion: v2
     appVersion: 0.3.8
-    created: "2025-05-13T12:39:53.725432429Z"
+    created: "2025-05-15T08:44:15.884837678Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -887,7 +887,7 @@ entries:
     version: 0.3.14
   - apiVersion: v2
     appVersion: 0.3.8
-    created: "2025-05-13T12:39:53.712460602Z"
+    created: "2025-05-15T08:44:15.875061786Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -913,7 +913,7 @@ entries:
     version: 0.3.13
   - apiVersion: v2
     appVersion: 0.3.8
-    created: "2025-05-13T12:39:53.70373143Z"
+    created: "2025-05-15T08:44:15.866214757Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -939,7 +939,7 @@ entries:
     version: 0.3.12
   - apiVersion: v2
     appVersion: 0.3.8
-    created: "2025-05-13T12:39:53.695105839Z"
+    created: "2025-05-15T08:44:15.857441105Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -965,7 +965,7 @@ entries:
     version: 0.3.11
   - apiVersion: v2
     appVersion: 0.3.8
-    created: "2025-05-13T12:39:53.685914783Z"
+    created: "2025-05-15T08:44:15.848971774Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -991,7 +991,7 @@ entries:
     version: 0.3.10
   - apiVersion: v2
     appVersion: 0.3.7
-    created: "2025-05-13T12:39:54.133612483Z"
+    created: "2025-05-15T08:44:16.216086832Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1017,7 +1017,7 @@ entries:
     version: 0.3.9
   - apiVersion: v2
     appVersion: 0.3.7
-    created: "2025-05-13T12:39:54.119372244Z"
+    created: "2025-05-15T08:44:16.206461782Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1043,7 +1043,7 @@ entries:
     version: 0.3.8
   - apiVersion: v2
     appVersion: 0.3.6
-    created: "2025-05-13T12:39:54.109654385Z"
+    created: "2025-05-15T08:44:16.196821257Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1069,7 +1069,7 @@ entries:
     version: 0.3.7
   - apiVersion: v2
     appVersion: 0.3.5
-    created: "2025-05-13T12:39:54.094945314Z"
+    created: "2025-05-15T08:44:16.187395653Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1095,7 +1095,7 @@ entries:
     version: 0.3.6
   - apiVersion: v2
     appVersion: 0.3.5
-    created: "2025-05-13T12:39:54.085197635Z"
+    created: "2025-05-15T08:44:16.177773292Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1121,7 +1121,7 @@ entries:
     version: 0.3.5
   - apiVersion: v2
     appVersion: 0.3.3
-    created: "2025-05-13T12:39:54.042747858Z"
+    created: "2025-05-15T08:44:16.139918333Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1147,7 +1147,7 @@ entries:
     version: 0.3.4
   - apiVersion: v2
     appVersion: 0.3.3
-    created: "2025-05-13T12:39:53.919927987Z"
+    created: "2025-05-15T08:44:16.03914655Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1173,7 +1173,7 @@ entries:
     version: 0.3.3
   - apiVersion: v2
     appVersion: 0.3.2
-    created: "2025-05-13T12:39:53.792804222Z"
+    created: "2025-05-15T08:44:15.939088434Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1199,7 +1199,7 @@ entries:
     version: 0.3.2
   - apiVersion: v2
     appVersion: 0.3.1
-    created: "2025-05-13T12:39:53.675144848Z"
+    created: "2025-05-15T08:44:15.839517626Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1225,7 +1225,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2025-05-13T12:39:53.66122314Z"
+    created: "2025-05-15T08:44:15.829662534Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1251,7 +1251,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2025-05-13T12:39:53.651316705Z"
+    created: "2025-05-15T08:44:15.819881054Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1277,7 +1277,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.2.2
-    created: "2025-05-13T12:39:53.640909235Z"
+    created: "2025-05-15T08:44:15.809817361Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1303,7 +1303,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2025-05-13T12:39:53.628484223Z"
+    created: "2025-05-15T08:44:15.79929805Z"
     dependencies:
     - alias: prometheus
       condition: prometheus.enabled
@@ -1327,4 +1327,4 @@ entries:
     urls:
     - https://slimstackio.github.io/charts/slimstack-0.2.1.tgz
     version: 0.2.1
-generated: "2025-05-13T12:39:53.615304415Z"
+generated: "2025-05-15T08:44:15.789109884Z"
