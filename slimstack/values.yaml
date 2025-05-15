@@ -169,7 +169,7 @@ mutator:
   replicas: 2
   image:
     repository: public.ecr.aws/slimstack/mutator
-    tag: 0.4.30
+    tag: 0.4.31
     pullPolicy: Always
   wandControl: false
   debugLog: false
@@ -192,7 +192,7 @@ collector:
   replicas: 1
   image:
     repository: public.ecr.aws/slimstack/collector
-    tag: 0.2.50
+    tag: 0.2.51
     pullPolicy: Always
   wandControl: false
   debugLog: false
