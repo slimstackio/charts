@@ -111,9 +111,10 @@ spec:
                   minimum: 0
                   default: 25
                   description: "Memory limit buffer as a percentage (0-100)."
-                wandNodesPlacement:
+                skipLearningPeriod:
                   type: boolean
-                  description: "Ensures pods for this workload are placed on Wand's dedicated nodes."
+                  default: false
+                  description: "Skips the learning period for this workload."      
                 type:
                   type: string
                   enum:

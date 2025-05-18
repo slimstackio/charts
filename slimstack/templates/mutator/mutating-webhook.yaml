@@ -20,7 +20,7 @@ webhooks:
       - operations: ["UPDATE"]
         apiGroups: ["*"]
         apiVersions: ["*"]
-        resources: ["deployments", "statefulsets", "cronjobs", "daemonsets"]
+        resources: ["deployments", "statefulsets", "cronjobs", "daemonsets", "jobs"]
     failurePolicy: Ignore
     sideEffects: None
     timeoutSeconds: 5
