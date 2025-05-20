@@ -114,7 +114,7 @@ spec:
                 skipLearningPeriod:
                   type: boolean
                   default: false
-                  description: "Skips the learning period for this workload."      
+                  description: "Skips the learning period for this workload."
                 type:
                   type: string
                   enum:
