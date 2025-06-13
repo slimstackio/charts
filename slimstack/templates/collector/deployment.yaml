@@ -54,6 +54,8 @@ spec:
               value: "{{ include "api.url" .}}"
             - name: DEBUG
               value: "{{ .Values.collector.debugLog }}"
+            - name: SENTRY_DSN
+              value: "https://30eead725a1a258814b71cca0736bd1a@o4508557366329344.ingest.de.sentry.io/4508632553554000"
             - name: MUTATOR_URL
               value: {{ template "mutator.fullname" . }}
             - name: CONFIG_NAMESPACE
