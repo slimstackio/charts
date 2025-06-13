@@ -29,16 +29,18 @@ spec:
       tolerations:
         {{- toYaml .Values.mutator.tolerations | nindent 8 }}
       {{- end }}
+      {{- if ne .Values.mutator.disableAffinity true }}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - {{ template "mutator.fullname" . }}
-              topologyKey: "kubernetes.io/hostname"
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - {{ template "mutator.fullname" . }}
+            topologyKey: "kubernetes.io/hostname"
+      {{- end }}
       serviceAccountName: {{ template "mutator.fullname" . }}
       containers:
         - name: {{ template "mutator.fullname" . }}
@@ -55,6 +57,8 @@ spec:
               value: "{{ template "customerID" . }}"
             - name: "CLUSTER_ID"
               value: "{{ template "clusterID" . }}"
+            - name: "SENTRY_DSN"
+              value: "https://02e6f44bcbc6855b7b38fbbfaff74888@o4508557366329344.ingest.de.sentry.io/4508573349052496"
             {{- range $key, $value := .Values.mutator.extraEnvVars }}
             - name: "{{ $key }}"
               value: "{{ $value }}"
